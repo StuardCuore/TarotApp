@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// func to shuffle the array this suffles the cards order.
 func shuffledArray<T> (nums: [T]) -> [T] {
     var mutableCopyOfNums = nums
     
@@ -24,12 +25,12 @@ func shuffledArray<T> (nums: [T]) -> [T] {
 
 
 
-
+// this is spreading the cards
 extension View {
     func stacked(at place: Int, in total: Int) -> some View {
         let offset = Double(total - place)
         
-        return self.offset(x: offset * 28, y: 0)
+        return self.offset(x: offset * 28, y: 0) //This sets how separated the cards are between them
     }
     
 }
@@ -37,18 +38,18 @@ extension View {
 
 struct ContentView: View {
     
-    
-    
     @EnvironmentObject var cardIndex: NumArray
     @State var show = true
     @State var startView = true
     
     
     //random bool
-    var randomBool = Bool.random()
+    //var randomBool = Bool.random()  //commented out, delete later
     //
     
 
+    
+    //this should be a loop
     @State var cards = shuffledArray(nums:[Card(front: 1),Card(front: 2),
                                                    Card(front: 3),Card(front: 4),
                                                    Card(front: 5),Card(front: 6),
@@ -60,16 +61,16 @@ struct ContentView: View {
                                                    Card(front: 17),Card(front: 18),
                                                    Card(front: 19),Card(front: 20),
                                                    Card(front: 21),Card(front: 22)])
-    
+    // ends loop
    
     
         var body: some View {
             
-            if startView {
+            // Add logo, add captio 'tap to spread the cards', add shadows,
+            if startView { // start view, just a card
                 ZStack{
-                    Image("Background").resizable()
+                    Image("Background").resizable() //See if this could be outside this 'if' statement
                         .aspectRatio(contentMode: .fill).ignoresSafeArea()
-                    //vista de acceso a la app antes de las cartas.
                     
                     Button {
                         var i = 0
@@ -87,29 +88,34 @@ struct ContentView: View {
                         }
                         print(cardIndex.shuffledCardIndex)
                     } label: {
-                        Image("Back")
+                        Image("Back") //at some point animate this to suffle the cards
                     }
 
                 }
-            }
+            } // ends start view.
         
-            if startView == false{
+            if startView == false{ // changes to spreading cards view
                 ZStack {
                     Image("Background").resizable()
-                        .aspectRatio(contentMode: .fill).ignoresSafeArea()
-                    CrossView()
+                        .aspectRatio(contentMode: .fill).ignoresSafeArea() //should probably be outside this 'if' statement
                     
-                    if show == true{
+                    CrossView() //brings out the magnetic dots.
+                    
+                    if show == true{ //refactor the 'show' var
                         
                         ZStack {
                             ForEach(0..<cards.count, id: \.self) { index in
                                 
                                 CardView(card: cards[index])
-                                    .stacked(at: index, in: cards.count)
-                                //cardIndex.shuffledCardIndex.append(index)
+                                    .stacked(at: index, in: cards.count) // this comes from the extension. check if it can be redone to get better grip at the magnetic points
+                                
+                                //cardIndex.shuffledCardIndex.append(index) //commented out before hand
                             }
                         }
                     }
+                    
+                    //aquí me quedé comentando.
+                    
                     VStack{
                         Spacer()
                         
