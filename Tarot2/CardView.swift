@@ -8,17 +8,17 @@ import SwiftUI
 
 struct CardView: View {
     
-    @EnvironmentObject var cardIndex: NumArray
+    @EnvironmentObject var cardIndex: NumArray // comes from ArrayData file.
     
-    let card: Card
+    let card: Card // Comes from the Card file.
 
     
-    @State private var isShowingCard = false 
-    @State private var xdragAmount: CGFloat = UIScreen.main.bounds.width/8
-    @State private var ydragAmount: CGFloat = UIScreen.main.bounds.height/8
+    @State private var isShowingCard = false // This is what makes the cards show in their backs at the beginning and toogles to change between back and front. start on false so is showing the back.
+    @State private var xdragAmount: CGFloat = UIScreen.main.bounds.width/8 //gets the width of the screen divided by 8
+    @State private var ydragAmount: CGFloat = UIScreen.main.bounds.height/8 //gets the height of the screen divided by 8
     
     @State var zIndVal: Double = 0
-    @State var offsetBack:CGFloat = 0
+    @State var offsetBack:CGFloat = 1 //it starts in 1 so later when we add the index of each card * 28 it sets back the self.xDragAmount to the magnetic point.
     
     
     
@@ -26,7 +26,7 @@ struct CardView: View {
         
         HStack {
             
-            if isShowingCard {
+            if isShowingCard { //toogle for front and back of the card
                 if card.booly == true {
                     Image(cardIndex.cardSet+String(card.front))
                         .resizable().aspectRatio(contentMode: .fit)
@@ -39,19 +39,16 @@ struct CardView: View {
                         .cornerRadius(10)
                 }
             }
-            else if isShowingCard == false {
+            else if isShowingCard == false { //toogle for front and back of the card
                 
                 Image(cardIndex.cardBack+card.back)
                         .resizable().aspectRatio(contentMode: .fit)
                         .cornerRadius(10)
-                    
-                
-            }
+            } //end of toogle for front and back of the card
         }
         .frame(width:200, height: 320)
         .zIndex(zIndVal)
         .position(x: self.xdragAmount, y: self.ydragAmount)
-        
         .gesture(
             DragGesture()
                 .onChanged({value in
@@ -60,43 +57,41 @@ struct CardView: View {
                     self.ydragAmount = value.location.y
                     
                     if cardIndex.zInd < cardIndex.zVar {
-                        cardIndex.zInd += 1
+                        cardIndex.zInd += 1 // sets the zInd of the touched card
                     }
                     else if cardIndex.zInd > cardIndex.zVar{
-                        cardIndex.zVar += 1
+                        cardIndex.zVar += 1// sets the zInd of the touched card
                     }
-                    cardIndex.zInd = cardIndex.zVar
+                    cardIndex.zInd = cardIndex.zVar // sets the zInd of the touched card
                     print(cardIndex.zInd)
-                    zIndVal = cardIndex.zInd
+                    zIndVal = cardIndex.zInd // sets the zInd of the touched card
                 }
                           )
                 .onEnded(
                     {value in
                         
                         //accediendo al index de la carta en el shuffled array
-                        
-                        
                         //me quitó el error.
-                        /*for (index, shufIndex) in cardIndex.shuffledCardIndex.enumerated() {
+                        for (index, shufIndex) in cardIndex.shuffledCardIndex.enumerated() {
                             if shufIndex == card.front {
                                 print("found at")
                                 print(index)
-                                offsetBack = CGFloat(index + 1) //offsetBack = CGFloat(index + 1)
+                                offsetBack = CGFloat(index) + CGFloat(1)
                                 print("offset number: \(offsetBack)")
                             }
-                        }*/
+                        }
                         //me quitó el error
                         
                         
                         if cardIndex.zVar == cardIndex.zInd {
-                            cardIndex.zInd += 1
+                            cardIndex.zInd += 1 // sets the zInd of the touched card
                         }
-                        cardIndex.zVar += 2
+                        cardIndex.zVar += 2 // Brings the touched card to the front.
                         
                         // magnet del 1er punto
                         if abs((UIScreen.main.bounds.width/2) - (self.xdragAmount + 250 + (28 * offsetBack))) < 100  && abs((UIScreen.main.bounds.height/1.5) - self.ydragAmount) < 150  {
-                            
                             self.xdragAmount = 410 - 250 - (28 * offsetBack)
+                            // var offsetback is what takes the card to the magnetic place, taking out the offset/displacement created in the extension for the card view in the ContentView.swift file.
                             self.ydragAmount = 787
                         }
                         // magnet del punto medio

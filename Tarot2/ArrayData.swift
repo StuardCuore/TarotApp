@@ -8,25 +8,24 @@
 import Foundation
 import SwiftUI
 
-public var tarotArray = Array(1...22)
+//public var tarotArray = Array(1...22) // is not necesary necesary
 
 
 class NumArray: ObservableObject {
     
     
-    @Published var isLoggedIn = true //regresar a false
-    @Published var zInd: Double = 1
-    @Published var zVar: Double = 1
-    @Published var cardBackSet1:String = ""
-    @Published var cardBackSet2:String = "Clow_Card_"
+    //@Published var isLoggedIn = false //Por el momento no ha afectado remover esta variable.
+    @Published var zInd: Double = 1 // Change to Int
+    @Published var zVar: Double = 1 // Change to Int
+    @Published var cardBackSet1:String = ""// this needs a refactor to get the name out of the card struct
+    @Published var cardBackSet2:String = "Clow_Card_"// this needs a refactor to get the name out of the card struct
+    @Published var cardBack:String = ""// this needs a refactor to get the name out of the card struct
     
-    
-    @Published var cardBack:String = ""
-    @Published var cardSet1:String = "card"
-    @Published var cardSet2:String = "Clow"
-    @Published var cardSet:String = "card"
-    @Published var clowCards = false
-    @Published var shuffledCardIndex:Array = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]
+    @Published var cardSet1:String = "card"// this needs a refactor to get the name out of the card struct
+    @Published var cardSet2:String = "Clow"// this needs a refactor to get the name out of the card struct
+    @Published var cardSet:String = "card" // this needs a refactor to get the name out of the card struct
+    @Published var clowCards = false // This needs to be REFACTORED so is able to change to other card sets.
+    @Published var shuffledCardIndex:Array = Array(1...22) //does the same as a 1 to 22 regular array [1,2,3...22]
     
     
 }

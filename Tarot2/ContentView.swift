@@ -32,7 +32,6 @@ extension View {
         
         return self.offset(x: offset * 28, y: 0) //This sets how separated the cards are between them
     }
-    
 }
 
 
@@ -78,7 +77,7 @@ struct ContentView: View {
                         cardIndex.shuffledCardIndex = [Int]()
 
                         while i < cards.count {
-                            var inte = Int(cards[i].front)
+                            let inte = Int(cards[i].front)
                             emptyArray.insert(inte, at:i)
                             cardIndex.shuffledCardIndex = emptyArray.reversed()
                             i = i + 1
@@ -107,21 +106,17 @@ struct ContentView: View {
                             ForEach(0..<cards.count, id: \.self) { index in
                                 
                                 CardView(card: cards[index])
-                                    .stacked(at: index, in: cards.count) // this comes from the extension. check if it can be redone to get better grip at the magnetic points
+                                    .stacked(at: index, in: cards.count) // .stacked is what is spreading the cards by offset. we use the index and the card.count to place them and later we use the index to offset back the card placement to the magnetic point.
                                 
                                 //cardIndex.shuffledCardIndex.append(index) //commented out before hand
                             }
                         }
                     }
                     
-                    //aquí me quedé comentando.
-                    
                     VStack{
                         Spacer()
-                        
                         HStack{
                             Button {
-                                
                                 cardIndex.clowCards.toggle()
                                 if cardIndex.clowCards == true {
                                     cardIndex.cardSet = cardIndex.cardSet2
@@ -173,7 +168,7 @@ struct ContentView: View {
                                 cardIndex.shuffledCardIndex = [Int]()
                                 
                                 while i < cards.count {
-                                    var inte = Int(cards[i].front)
+                                    let inte = Int(cards[i].front)
                                     emptyArray.insert(inte, at:i)
                                     cardIndex.shuffledCardIndex = emptyArray.reversed()
                                     

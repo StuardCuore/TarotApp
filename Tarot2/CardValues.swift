@@ -8,6 +8,9 @@
 import Foundation
 import SwiftUI
 
+/* UNUSED FILE. SHOULD DELETE*/
+
+
 /*class CardValues: ObservableObject {
    
     @Published var isLoggedIn = false
