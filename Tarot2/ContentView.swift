@@ -176,7 +176,6 @@ struct ContentView: View {
                                     i = i + 1
                                 }
                                 
-                                
                             } label: {
                                 Image(systemName: show == true ?  "lanyardcard.fill" : "lanyardcard")
                                     .resizable()

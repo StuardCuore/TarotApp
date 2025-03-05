@@ -11,11 +11,15 @@ import SwiftUI
 struct Tarot2App: App {
     var body: some Scene {
         WindowGroup {
+            /* all this views aren't working anymore. They use to be tests
+             
             //PruebaCard().environmentObject(NumArray())
-            //CardView(card: Card.example)
+            //CardView(card: Card.example2)
             //CardProfileList()
+             
+             */
                 
-            ContentView().environmentObject(NumArray())
+            ContentView().environmentObject(NumArray()) //current view that should be active.
         }
     }
 }

@@ -19,6 +19,7 @@ var tarArray = [1,2,3,4,5]
 
 
 
+/*FIRST TRY TO GET THE TOUCHED CARD ABOVE THE OTHERS. SHOULD DELETE FILE.*/
 
 struct PruebaCard: View {
     

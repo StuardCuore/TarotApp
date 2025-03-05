@@ -27,13 +27,13 @@ struct CardView: View {
         HStack {
             
             if isShowingCard { //toogle for front and back of the card
-                if card.booly == true {
+                if card.booly == true { // true puts the card upwards
                     Image(cardIndex.cardSet+String(card.front))
                         .resizable().aspectRatio(contentMode: .fit)
                         .cornerRadius(10)
-                    
                 }
-                else if card.booly == false {
+                
+                else if card.booly == false { // false puts the card downwards/upside down
                     Image(cardIndex.cardSet+String(card.front))
                         .resizable().aspectRatio(contentMode: .fit).rotationEffect(.degrees(180))
                         .cornerRadius(10)
@@ -70,58 +70,50 @@ struct CardView: View {
                 .onEnded(
                     {value in
                         
-                        //accediendo al index de la carta en el shuffled array
-                        //me quitó el error.
-                        for (index, shufIndex) in cardIndex.shuffledCardIndex.enumerated() {
+                        // accessing to the card index with .enumerated() to set the offsetBack variable.
+                        for (index, shufIndex) in cardIndex.shuffledCardIndex.enumerated() { //gets the index so the card can be offset back to match the magnet point. without this the cards get offsetted due to the original offset placement.
                             if shufIndex == card.front {
-                                print("found at")
-                                print(index)
+                                print("found at \(index)") //console debugging
                                 offsetBack = CGFloat(index) + CGFloat(1)
                                 print("offset number: \(offsetBack)")
                             }
                         }
-                        //me quitó el error
-                        
                         
                         if cardIndex.zVar == cardIndex.zInd {
                             cardIndex.zInd += 1 // sets the zInd of the touched card
                         }
                         cardIndex.zVar += 2 // Brings the touched card to the front.
                         
-                        // magnet del 1er punto
+                        // magnet gesture to the 1st point.
                         if abs((UIScreen.main.bounds.width/2) - (self.xdragAmount + 250 + (28 * offsetBack))) < 100  && abs((UIScreen.main.bounds.height/1.5) - self.ydragAmount) < 150  {
-                            self.xdragAmount = 410 - 250 - (28 * offsetBack)
+                            self.xdragAmount = 410 - 250 - (28 * offsetBack) //FIND OUT where does the 410 comes from.
                             // var offsetback is what takes the card to the magnetic place, taking out the offset/displacement created in the extension for the card view in the ContentView.swift file.
                             self.ydragAmount = 787
                         }
-                        // magnet del punto medio
+                        // magnet gesture to the 2nd point.
                         if abs((UIScreen.main.bounds.width/2) - (self.xdragAmount + (28 * offsetBack))) < 100  && abs((UIScreen.main.bounds.height/1.5) - self.ydragAmount) < 150  {
-                            self.xdragAmount = 410 - (28 * offsetBack)
+                            self.xdragAmount = 410 - (28 * offsetBack)// var offsetback is what takes the card to the magnetic place, taking out the offset/displacement created in the extension for the card view in the ContentView.swift file.
                             self.ydragAmount = 787
                         }
-                        // magnet del tercer punto
+                        // magnet magnet gesture to the 3rd point.
                         if abs((UIScreen.main.bounds.width/2) - (self.xdragAmount - 250 + (28 * offsetBack))) < 100  && abs((UIScreen.main.bounds.height/1.5) - self.ydragAmount) < 150  {
-                         
-                            self.xdragAmount = 410 + 250 - (28 * offsetBack)
+                            self.xdragAmount = 410 + 250 - (28 * offsetBack)// var offsetback is what takes the card to the magnetic place, taking out the offset/displacement created in the extension for the card view in the ContentView.swift file.
                             self.ydragAmount = 787
                         }
-                            
                     }
                 )
         )
-        
         .onTapGesture {
-            isShowingCard.toggle()
+            isShowingCard.toggle() // onTapGesture to toggle back and front.
+            // MISSING a long press gesture to see the card in big
         }
-        
-        
     }
-    
 }
     
     struct CardView_Previews: PreviewProvider {
         static var previews: some View {
             CardView(card: Card.example2)
+                .environmentObject(NumArray()) //This allows the preview to load by been able to read the environmentObject
         }
     }
 
