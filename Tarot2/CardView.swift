@@ -17,7 +17,7 @@ struct CardView: View {
     @State private var xdragAmount: CGFloat = UIScreen.main.bounds.width/8 //gets the width of the screen divided by 8
     @State private var ydragAmount: CGFloat = UIScreen.main.bounds.height/8 //gets the height of the screen divided by 8
     
-    @State var zIndVal: Double = 0
+    @State var zIndVal: Int = 0 // changed from Double to Int
     @State var offsetBack:CGFloat = 1 //it starts in 1 so later when we add the index of each card * 28 it sets back the self.xDragAmount to the magnetic point.
     
     
@@ -47,7 +47,7 @@ struct CardView: View {
             } //end of toogle for front and back of the card
         }
         .frame(width:200, height: 320)
-        .zIndex(zIndVal)
+        .zIndex(Double(zIndVal))
         .position(x: self.xdragAmount, y: self.ydragAmount)
         .gesture(
             DragGesture()
@@ -112,7 +112,7 @@ struct CardView: View {
     
     struct CardView_Previews: PreviewProvider {
         static var previews: some View {
-            CardView(card: Card.example2)
+            CardView(card: Card.example)
                 .environmentObject(NumArray()) //This allows the preview to load by been able to read the environmentObject
         }
     }

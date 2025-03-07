@@ -8,15 +8,10 @@
 import Foundation
 import SwiftUI
 
-//public var tarotArray = Array(1...22) // is not necesary necesary
-
-
 class NumArray: ObservableObject {
-    
-    
-    //@Published var isLoggedIn = false //Por el momento no ha afectado remover esta variable.
-    @Published var zInd: Double = 1 // Change to Int
-    @Published var zVar: Double = 1 // Change to Int
+
+    @Published var zInd: Int = 1
+    @Published var zVar: Int = 1
     @Published var cardBackSet1:String = ""// this needs a refactor to get the name out of the card struct
     @Published var cardBackSet2:String = "Clow_Card_"// this needs a refactor to get the name out of the card struct
     @Published var cardBack:String = ""// this needs a refactor to get the name out of the card struct

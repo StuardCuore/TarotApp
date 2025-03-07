@@ -15,9 +15,9 @@ struct CardProfileList: View {
     var body: some View {
         List{
             ForEach(CardProfile.data, id:\.self) {profile in
-                HStack{
+                HStack{ //
                     Spacer()
-                    ZStack{
+                    //ZStack{
                         // detona cual imagen está activada. probablemente cambiár a BOTON.
                         Button {
                             
@@ -32,12 +32,12 @@ struct CardProfileList: View {
                         } label: {
                             Image(profile.image)
                                 .resizable()
-                                .aspectRatio(contentMode: .fill).frame(width: 60, height:60).cornerRadius(0)//.aspectRatio(contentMode: .fill).frame(width: 60, height:60).cornerRadius(0)
+                                .aspectRatio(contentMode: .fill).frame(width: 60, height:60).cornerRadius(30)//.aspectRatio(contentMode: .fill).frame(width: 60, height:60).cornerRadius(0)
                         }
                         //Circle().background(.gray).frame(width: 70, height:70).cornerRadius(35)
                         
-                       
-                    }
+                       //
+                    //}
                 }
             }
         }
