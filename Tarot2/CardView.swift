@@ -11,14 +11,17 @@ struct CardView: View {
     @EnvironmentObject var cardIndex: NumArray // comes from ArrayData file.
     
     let card: Card // Comes from the Card file.
-
     
-    @State private var isShowingCard = false // This is what makes the cards show in their backs at the beginning and toogles to change between back and front. start on false so is showing the back.
+    
+    @State var isShowingCard = false // This is what makes the cards show in their backs at the beginning and toogles to change between back and front. start on false so is showing the back.
     @State private var xdragAmount: CGFloat = UIScreen.main.bounds.width/8 //gets the width of the screen divided by 8
     @State private var ydragAmount: CGFloat = UIScreen.main.bounds.height/8 //gets the height of the screen divided by 8
     
     @State var zIndVal: Int = 0 // changed from Double to Int
     @State var offsetBack:CGFloat = 1 //it starts in 1 so later when we add the index of each card * 28 it sets back the self.xDragAmount to the magnetic point.
+    @State var showCardDetail: Bool = false
+    @State private var timer: Timer?
+    
     
     
     
@@ -28,22 +31,22 @@ struct CardView: View {
             
             if isShowingCard { //toogle for front and back of the card
                 if card.booly == true { // true puts the card upwards
-                    Image(cardIndex.cardSet+String(card.front))
+                    Image(cardIndex.cardSet+String(card.front)) // Image(cardIndex.cardSet+String(card.front))
                         .resizable().aspectRatio(contentMode: .fit)
                         .cornerRadius(10)
                 }
                 
                 else if card.booly == false { // false puts the card downwards/upside down
-                    Image(cardIndex.cardSet+String(card.front))
+                    Image(cardIndex.cardSet+String(card.front)) // AQUI!!!!!!!!!!!!
                         .resizable().aspectRatio(contentMode: .fit).rotationEffect(.degrees(180))
                         .cornerRadius(10)
                 }
             }
             else if isShowingCard == false { //toogle for front and back of the card
                 
-                Image(cardIndex.cardBack+card.back)
-                        .resizable().aspectRatio(contentMode: .fit)
-                        .cornerRadius(10)
+                Image(cardIndex.cardBack) // Image(cardIndex.cardBack+card.back)
+                    .resizable().aspectRatio(contentMode: .fit)
+                    .cornerRadius(10)
             } //end of toogle for front and back of the card
         }
         .frame(width:200, height: 320)
@@ -65,6 +68,7 @@ struct CardView: View {
                     cardIndex.zInd = cardIndex.zVar // sets the zInd of the touched card
                     print(cardIndex.zInd)
                     zIndVal = cardIndex.zInd // sets the zInd of the touched card
+                    stopTimer()
                 }
                           )
                 .onEnded(
@@ -107,14 +111,54 @@ struct CardView: View {
             isShowingCard.toggle() // onTapGesture to toggle back and front.
             // MISSING a long press gesture to see the card in big
         }
+        /*.simultaneousGesture(
+         LongPressGesture(minimumDuration: 0).onChanged { _ in showCardDetail = true
+         Image(cardIndex.cardSet+String(card.front)).resizable().scaledToFit().frame(width: 300, height: 400)
+         }
+         )
+         .simultaneousGesture(
+         TapGesture().onEnded { showCardDetail = false }
+         )*/
+        
+        .onLongPressGesture(minimumDuration: 0.8, pressing: { pressing in
+            if isShowingCard {
+                if pressing {
+                    startTimer() //missing if statement to work only when the image is showin the front
+                } else {
+                    stopTimer()
+                }
+            }
+        }) {
+            print("Long press completed")
+        }
+        //.overlay(showCardDetail ? CardView(card: Card.example).background(Color.clear) : nil)
+        .sheet(isPresented: $showCardDetail) {
+            Image(cardIndex.cardSet+String(card.front)).resizable().scaledToFit().cornerRadius(10).frame(width: 500).presentationBackground(Color.clear)
+        }
+
     }
-}
     
-    struct CardView_Previews: PreviewProvider {
-        static var previews: some View {
-            CardView(card: Card.example)
-                .environmentObject(NumArray()) //This allows the preview to load by been able to read the environmentObject
+    
+    
+    func startTimer() {
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.8, repeats: false) { _ in
+            showCardDetail = true
         }
     }
+    
+    // Stop the timer and hide the sheet immediately
+    func stopTimer() {
+        timer?.invalidate()
+        showCardDetail = false
+    }
+}
+
+struct CardView_Previews: PreviewProvider {
+    static var previews: some View {
+        CardView(card: Card.example)
+            .environmentObject(NumArray()) //This allows the preview to load by been able to read the environmentObject
+    }
+}
 
 
