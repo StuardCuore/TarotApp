@@ -16,19 +16,23 @@ struct CrossView: View {
     @State private var xPlacement1: CGFloat = UIScreen.main.bounds.width/2
     
     @State private var yPlacement1: CGFloat = UIScreen.main.bounds.height/1.5
+    @State var xoffset1 : CGFloat = 150
+    @State var yoffset1 : CGFloat = 0
     
     var body: some View {
         ZStack{
             //1st magnetic point
-            Image(systemName: "circle.dotted").position(x: self.xPlacement1 + 250, y: self.yPlacement1) //250 should be stored in a variable so it can be changed to fit different screens and to be applied inside the CardView file.
+            Image(systemName: "circle.dotted")
+                .position(x: self.xPlacement1, y: self.yPlacement1)
+                .offset(x: +xoffset1, y: yoffset1) //250 should be stored in a variable so it can be changed to fit different screens and to be applied inside the CardView file.
             // 2nd magnetic point
             Image(systemName: "circle.dotted")
                 .position(x: self.xPlacement1, y: self.yPlacement1)
                 .offset(x: 0, y: 0)
             //3rd magnetic point
-            Image(systemName: "circle.dotted").position(x: self.xPlacement1 - 250, y: self.yPlacement1)
-            
-            
+            Image(systemName: "circle.dotted")
+                .position(x: self.xPlacement1, y: self.yPlacement1)
+                .offset(x: -xoffset1, y: yoffset1)
         }
     }
 }
