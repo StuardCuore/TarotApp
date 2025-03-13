@@ -42,7 +42,7 @@ struct SideMenuView: View {
                                 
                                 Button {
                                     // activates the view for each card. this is fetched from CardProfile file,
-                                    //cardIndex.cardSet = profile.name
+                                    cardIndex.cardSet = profile.name
                                     cardIndex.cardBack = profile.image
                                     
                                 } label: {
@@ -72,7 +72,7 @@ struct SideMenuView: View {
                                     .resizable().aspectRatio(contentMode: .fill).frame(width: 45, height:45).foregroundColor(Color.black)
                             }
                             Button {
-                                sideMenuData.showPointSet3 = false
+                                sideMenuData.showPointSet2 = true
                                 sideMenuData.showPointSet3 = true
                                 //activates the third set of magnetic points
                             } label: {
