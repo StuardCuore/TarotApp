@@ -13,10 +13,10 @@ import SwiftUI
 // this needs to be more dinamic for different screen sizes
 struct CrossView: View {
     
-    @State private var xPlacement1: CGFloat = UIScreen.main.bounds.width/2
+    @State var xPlacement1: CGFloat = UIScreen.main.bounds.width/2
+    @State var yPlacement1: CGFloat = UIScreen.main.bounds.height/1.45
     
-    @State private var yPlacement1: CGFloat = UIScreen.main.bounds.height/1.5
-    @State var xoffset1 : CGFloat = 150
+    @State var xoffset1 : CGFloat = 130
     @State var yoffset1 : CGFloat = 0
     
     var body: some View {

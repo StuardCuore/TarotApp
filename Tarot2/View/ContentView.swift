@@ -32,7 +32,9 @@ extension View { // this is spreading the cards
 
 struct ContentView: View {
     
+    
     @EnvironmentObject var cardIndex: NumArray
+    @EnvironmentObject var sideMenuData: SideMenuData
     @State var showSpreadedCards = true
     @State var startView = true
     @State private var isMenuOpen = false
@@ -96,7 +98,13 @@ struct ContentView: View {
             if startView == false{ // changes to spreading cards view
                 
                     CrossView() //brings out the magnetic dots.
-                    
+                if sideMenuData.showPointSet2 == true {
+                    CrossView2()
+                }
+                if sideMenuData.showPointSet3 == true {
+                    CrossView3()
+                }
+                
                     if showSpreadedCards == true{ //refactor the 'show' var
                         
                         ZStack {
@@ -113,9 +121,12 @@ struct ContentView: View {
                     
                     
                                 //
-                                SideMenuView()
-                                    .offset(x: isMenuOpen ? -390 : -560) // .offset(x: isMenuOpen ? -300 : -560) // This hides and shows the sideMenuView
-                                    .animation(.easeInOut, value: isMenuOpen)
+               
+                SideMenuView(isMenuVisible: $isMenuOpen)
+                        .offset(x: isMenuOpen ? 0 : -(UIScreen.main.bounds.width)) // .offset(x: isMenuOpen ? -300 : -560) // This hides and shows the sideMenuView
+                
+                        .animation(.easeInOut, value: isMenuOpen)
+                
                                 //
                     
                         
@@ -135,13 +146,13 @@ struct ContentView: View {
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
                                             .padding()
-                                            .frame(width: 100, height: 100)
+                                            .frame(width: 65, height: 65)
                                             .background(
                                                 Circle()
                                                     .fill(.white.opacity(0.15)))
                                             .shadow(radius: 10)
                                         .foregroundColor(.black)} // is menuOpen.toggle is here
-                                    .padding(40)
+                                    .padding(30)
                                     Spacer()
                                     
                                     
@@ -176,14 +187,14 @@ struct ContentView: View {
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
                                             .padding()
-                                            .frame(width: 100, height: 100)
+                                            .frame(width: 65, height: 65)
                                             .background(
                                                 Circle()
                                                     .fill(.white.opacity(0.15)))
                                             .shadow(radius: 10)
                                             .foregroundColor(.black)
                                     }
-                                    .padding(40)
+                                    .padding(30)
                                     
                                 } //starts Add-Ons for Side Menu // ends HStack
                                 //.frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -203,14 +214,15 @@ struct ContentView: View {
                                             }
                                         }
                                 ) unnecessary part ends */
-                            }
+                            }.ignoresSafeArea()
                 } //end of ZStack to take out the background
+                
             }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().environmentObject(NumArray()).environmentObject(SideMenuData())
     }
 }

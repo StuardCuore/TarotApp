@@ -20,6 +20,7 @@ struct Tarot2App: App {
              */
                 
             ContentView().environmentObject(NumArray()) //current view that should be active.
+                .environmentObject(SideMenuData())
         }
     }
 }
