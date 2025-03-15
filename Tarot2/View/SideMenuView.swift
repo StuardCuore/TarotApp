@@ -16,6 +16,8 @@ struct SideMenuView: View {
     @State private var isPointMenuExpanded = false
     
     @Binding var isMenuVisible: Bool
+    @State var isPointSet1Activated: Bool = true
+    @State var isPointSet2Activated: Bool = false
     
     
     var body: some View {
@@ -34,7 +36,7 @@ struct SideMenuView: View {
                 
                 List {
                     Section(header: Text("Setttings")) {
-                        DisclosureGroup("Settings", isExpanded: $isCardMenuExpanded) {
+                        DisclosureGroup("Card Design", isExpanded: $isCardMenuExpanded) {
                             //disclsureGround is what takes the buttons inside the expansive group.
                             ForEach(CardProfile.data, id:\.self) {profile in
                                 
@@ -44,6 +46,7 @@ struct SideMenuView: View {
                                     // activates the view for each card. this is fetched from CardProfile file,
                                     cardIndex.cardSet = profile.name
                                     cardIndex.cardBack = profile.image
+                                    
                                     
                                 } label: {
                                     Image(profile.image)
@@ -58,26 +61,31 @@ struct SideMenuView: View {
                             Button {
                                 sideMenuData.showPointSet2 = false
                                 sideMenuData.showPointSet3 = false
+                                isPointSet1Activated = true
+                                isPointSet2Activated = false
                                 //deactivates the second and third magnetic points
                             } label: {
-                                Image(systemName: "ellipsis.circle").resizable().aspectRatio(contentMode: .fill).frame(width: 45, height:45).foregroundColor(Color.black)
-                            }
+                                Image(isPointSet1Activated ? "PointSet1.clear" : "PointSet1.black").resizable().aspectRatio(contentMode: .fill).frame(width: 45, height:45)//.foregroundColor(Color.black)
+                            }//.background(isPointSet1Activated ? Color.purple : Color.white)
                             Button {
                                 sideMenuData.showPointSet2 = true
-                                
                                 sideMenuData.showPointSet3 = false
+                                isPointSet1Activated = false
+                                isPointSet2Activated = true
                                 //activates the second set of magnetic points
                             } label: {
-                                Image(systemName: "squareshape.split.2x2.dotted")
-                                    .resizable().aspectRatio(contentMode: .fill).frame(width: 45, height:45).foregroundColor(Color.black)
-                            }
+                                Image(isPointSet2Activated ? "PointSet2.clear" : "PointSet2.black")
+                                    .resizable().aspectRatio(contentMode: .fill).frame(width: 45, height:45)//.foregroundColor(Color.black)
+                            }//.background(isPointSet2Activated ? Color.purple : Color.white)
                             Button {
                                 sideMenuData.showPointSet2 = true
                                 sideMenuData.showPointSet3 = true
+                                isPointSet1Activated = false
+                                isPointSet2Activated = false
                                 //activates the third set of magnetic points
                             } label: {
-                                Image(systemName: "ellipsis.circle.fill").resizable().aspectRatio(contentMode: .fill).frame(width: 45, height: 45).rotationEffect(Angle(degrees: 90)).foregroundColor(Color.black)
-                            }
+                                Image(sideMenuData.showPointSet3 ? "PointSet3.clear" : "PointSet3.black").resizable().aspectRatio(contentMode: .fill).frame(width: 45, height: 45)//.foregroundColor(Color.black)
+                            }//.background(sideMenuData.showPointSet3 ? Color.purple : Color.white)
                             //
                         }
                     }
