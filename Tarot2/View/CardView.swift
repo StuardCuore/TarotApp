@@ -10,7 +10,7 @@ struct CardView: View {
     
     
     
-    @EnvironmentObject var cardIndex: NumArray // comes from ArrayData file.
+    @EnvironmentObject var cardIndex: ArrayData // comes from ArrayData file.
     @EnvironmentObject var sideMenuData: SideMenuData
     
     let card: Card // Comes from the Card file.
@@ -270,7 +270,7 @@ struct CardView: View {
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
         CardView(card: Card.example)
-            .environmentObject(NumArray()) //This allows the preview to load by been able to read the environmentObject
+            .environmentObject(ArrayData()) //This allows the preview to load by been able to read the environmentObject
     }
 }
 

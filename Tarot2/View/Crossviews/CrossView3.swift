@@ -73,6 +73,6 @@ struct CrossView3: View {
 
 struct CrossView3_Previews: PreviewProvider {
     static var previews: some View {
-        CrossView3().environmentObject(NumArray())
+        CrossView3().environmentObject(ArrayData())
     }
 }

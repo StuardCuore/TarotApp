@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SideMenuView: View {
     
-    @EnvironmentObject var cardIndex: NumArray
+    @EnvironmentObject var cardIndex: ArrayData
     @EnvironmentObject var sideMenuData: SideMenuData
     @State private var isExpanded = false
     @State private var isCardMenuExpanded = false
@@ -34,7 +34,9 @@ struct SideMenuView: View {
             }
             HStack {
                 
+                
                 List {
+                    
                     Section(header: Text("Setttings")) {
                         DisclosureGroup("Card Design", isExpanded: $isCardMenuExpanded) {
                             //disclsureGround is what takes the buttons inside the expansive group.
@@ -52,7 +54,7 @@ struct SideMenuView: View {
                                     Image(profile.image)
                                         .resizable()
                                         .aspectRatio(contentMode: .fill).frame(width: 45, height:45).cornerRadius(30)
-                                }
+                                }.padding(cardIndex.cardSet == profile.name ? .leading : .trailing)
                                 //
                             }
                         }
@@ -156,14 +158,18 @@ struct SideMenuView: View {
                      */
                 }.frame(width: 300)
                     .transition(.move(edge: .leading))
+                    
                 Spacer()  // Pushes menu to the left
             }
         }
     }
 }
 
-/*
- #Preview {
- SideMenuView().environmentObject(NumArray())
- }
- */
+
+struct SideMenuView_Previews: PreviewProvider {
+    static var previews: some View {
+        @State var isTrue = true
+        SideMenuView(isMenuVisible: $isTrue).environmentObject(ArrayData()).environmentObject(SideMenuData())
+        
+    }
+}

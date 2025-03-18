@@ -21,6 +21,16 @@ func shuffledArray<T> (nums: [T]) -> [T] {
     return shuffledArray
 }
 
+func shuffleCardArray() -> [Card] { // func to shuffle the array into a var. the inside func is what shuffles them
+    var cardArray: [Card] = []
+    for i in 1...22 {
+        cardArray.append(Card(front: i)) //card array from 1 to 22 (22 for the 22 arcana cards)
+    }
+            
+    return shuffledArray(nums: cardArray)
+}
+
+
 extension View { // this is spreading the cards
     func stacked(at place: Int, in total: Int, spacing: CGFloat) -> some View {
         let offset = Double(total - place)
@@ -30,31 +40,19 @@ extension View { // this is spreading the cards
 }
 
 
+
+
 struct ContentView: View {
     
     
-    @EnvironmentObject var cardIndex: NumArray
+    @EnvironmentObject var cardIndex: ArrayData // refactor ArrayData
     @EnvironmentObject var sideMenuData: SideMenuData
     @State var showSpreadedCards = true
     @State var startView = true
     @State private var isMenuOpen = false
     @State var showCardDetail: Bool = false
     
-    
-    //this should be a loop
-    @State var cards = shuffledArray(nums:[Card(front: 1),Card(front: 2), //take out the hard coding.
-                                           Card(front: 3),Card(front: 4),
-                                           Card(front: 5),Card(front: 6),
-                                           Card(front: 7),Card(front: 8),
-                                           Card(front: 9),Card(front: 10),
-                                           Card(front: 11),Card(front: 12),
-                                           Card(front: 13),Card(front: 14),
-                                           Card(front: 15),Card(front: 16),
-                                           Card(front: 17),Card(front: 18),
-                                           Card(front: 19),Card(front: 20),
-                                           Card(front: 21),Card(front: 22)])
-    // ends loop
-   
+   @State var cards = shuffleCardArray()
     
         var body: some View {
             
@@ -63,23 +61,14 @@ struct ContentView: View {
                     .aspectRatio(contentMode: .fill).ignoresSafeArea()
             
             
-            if startView { // start view, just a card
+            if startView { // start view, just one card
                     VStack{
                         Spacer()
                         VStack {
                             Button {
-                                //make a func for this.
-                                var i = 0
-                                var emptyArray = [Int]()
-                                cardIndex.shuffledCardIndex = [Int]()
+                               
+                                cardIndex.resetShuffleCards(cards: cards) //The func takes the parameter to reset the index arragement
                                 
-                                while i < cards.count {
-                                    let inte = Int(cards[i].front)
-                                    emptyArray.insert(inte, at:i)
-                                    cardIndex.shuffledCardIndex = emptyArray.reversed()
-                                    i = i + 1
-                                }
-                                //make a func for this.
                                 withAnimation{
                                     startView = false
                                 }
@@ -105,7 +94,7 @@ struct ContentView: View {
                     CrossView3()
                 }
                 
-                    if showSpreadedCards == true{ //refactor the 'show' var
+                    if showSpreadedCards == true{
                         
                         ZStack {
                             ForEach(0..<cards.count, id: \.self) { index in
@@ -123,13 +112,12 @@ struct ContentView: View {
                                 //
                
                 SideMenuView(isMenuVisible: $isMenuOpen)
-                        .offset(x: isMenuOpen ? 0 : -(UIScreen.main.bounds.width)) // .offset(x: isMenuOpen ? -300 : -560) // This hides and shows the sideMenuView
+                        .offset(x: isMenuOpen ? 0 : -(UIScreen.main.bounds.width)) // This hides and shows the sideMenuView
                 
                         .animation(.easeInOut, value: isMenuOpen)
                 
                                 //
                     
-                        
                             VStack {
                                 Spacer()
                                 HStack {
@@ -147,9 +135,7 @@ struct ContentView: View {
                                             .aspectRatio(contentMode: .fit)
                                             .padding()
                                             .frame(width: 65, height: 65)
-                                            .background(
-                                                Circle()
-                                                    .fill(.white.opacity(0.15)))
+                                            .background(Circle().fill(.white.opacity(0.15)))
                                             .shadow(radius: 10)
                                         .foregroundColor(.black)} // is menuOpen.toggle is here
                                     .padding(30)
@@ -158,29 +144,9 @@ struct ContentView: View {
                                     
                                     Button {
                                         showSpreadedCards.toggle()
-                                        cards = shuffledArray(nums:[Card(front: 1),Card(front: 2),
-                                                                    Card(front: 3),Card(front: 4),
-                                                                    Card(front: 5),Card(front: 6),
-                                                                    Card(front: 7),Card(front: 8),
-                                                                    Card(front: 9),Card(front: 10),
-                                                                    Card(front: 11),Card(front: 12),
-                                                                    Card(front: 13),Card(front: 14),
-                                                                    Card(front: 15),Card(front: 16),
-                                                                    Card(front: 17),Card(front: 18),
-                                                                    Card(front: 19),Card(front: 20),
-                                                                    Card(front: 21),Card(front: 22)]) //take out the hard coding.
+                                        cards = shuffleCardArray()
                                         
-                                        var i = 0
-                                        var emptyArray = [Int]()
-                                        cardIndex.shuffledCardIndex = [Int]()
-                                        
-                                        while i < cards.count {
-                                            let inte = Int(cards[i].front)
-                                            emptyArray.insert(inte, at:i)
-                                            cardIndex.shuffledCardIndex = emptyArray.reversed()
-                                            i = i + 1
-                                            //take out from view file.
-                                        }
+                                        cardIndex.resetShuffleCards(cards: cards) // func to reset the cards. it takes the parameter to take into acount the new shuffled cards arrangement
                                         
                                     } label: {
                                         Image(systemName: showSpreadedCards == true ?  "lanyardcard.fill" : "lanyardcard")
@@ -218,11 +184,11 @@ struct ContentView: View {
                 } //end of ZStack to take out the background
                 
             }
-    }
+    }    
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environmentObject(NumArray()).environmentObject(SideMenuData())
+        ContentView().environmentObject(ArrayData()).environmentObject(SideMenuData())
     }
 }

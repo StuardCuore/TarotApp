@@ -13,13 +13,13 @@ struct Tarot2App: App {
         WindowGroup {
             /* all this views aren't working anymore. They use to be tests
              
-            //PruebaCard().environmentObject(NumArray())
+            //PruebaCard().environmentObject(ArrayData())
             //CardView(card: Card.example2)
             //CardProfileList()
              
              */
                 
-            ContentView().environmentObject(NumArray()) //current view that should be active.
+            ContentView().environmentObject(ArrayData()) //current view that should be active.
                 .environmentObject(SideMenuData())
         }
     }
