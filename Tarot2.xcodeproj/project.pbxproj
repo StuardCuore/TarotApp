@@ -6,6 +6,16 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		1E2A47922E1EB632000F6FDD /* FirebaseAI in Frameworks */ = {isa = PBXBuildFile; productRef = 1E2A47912E1EB632000F6FDD /* FirebaseAI */; };
+		1E2A47942E1EB632000F6FDD /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 1E2A47932E1EB632000F6FDD /* FirebaseAppCheck */; };
+		1E2A47962E1EB632000F6FDD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 1E2A47952E1EB632000F6FDD /* FirebaseAuth */; };
+		1E2A47982E1EB632000F6FDD /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 1E2A47972E1EB632000F6FDD /* FirebaseFirestore */; };
+		1E2A479A2E1EB632000F6FDD /* FirebaseMLModelDownloader in Frameworks */ = {isa = PBXBuildFile; productRef = 1E2A47992E1EB632000F6FDD /* FirebaseMLModelDownloader */; };
+		1E2A479C2E1EB632000F6FDD /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 1E2A479B2E1EB632000F6FDD /* FirebaseMessaging */; };
+		1E2A479E2E1EB632000F6FDD /* FirebaseVertexAI in Frameworks */ = {isa = PBXBuildFile; productRef = 1E2A479D2E1EB632000F6FDD /* FirebaseVertexAI */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		1E0754142D73C62E001DB97F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -29,9 +39,30 @@
 		1E07541D2D73C62E001DB97F /* Tarot2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tarot2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		1E2A478E2E1EB41E000F6FDD /* Exceptions for "Tarot2" folder in "Tarot2Tests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"GoogleService-Info.plist",
+			);
+			target = 1E0754122D73C62E001DB97F /* Tarot2Tests */;
+		};
+		1E2A478F2E1EB41E000F6FDD /* Exceptions for "Tarot2" folder in "Tarot2UITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"GoogleService-Info.plist",
+			);
+			target = 1E07541C2D73C62E001DB97F /* Tarot2UITests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		1E0754052D73C62C001DB97F /* Tarot2 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1E2A478E2E1EB41E000F6FDD /* Exceptions for "Tarot2" folder in "Tarot2Tests" target */,
+				1E2A478F2E1EB41E000F6FDD /* Exceptions for "Tarot2" folder in "Tarot2UITests" target */,
+			);
 			path = Tarot2;
 			sourceTree = "<group>";
 		};
@@ -52,6 +83,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E2A479C2E1EB632000F6FDD /* FirebaseMessaging in Frameworks */,
+				1E2A47942E1EB632000F6FDD /* FirebaseAppCheck in Frameworks */,
+				1E2A47982E1EB632000F6FDD /* FirebaseFirestore in Frameworks */,
+				1E2A479A2E1EB632000F6FDD /* FirebaseMLModelDownloader in Frameworks */,
+				1E2A479E2E1EB632000F6FDD /* FirebaseVertexAI in Frameworks */,
+				1E2A47962E1EB632000F6FDD /* FirebaseAuth in Frameworks */,
+				1E2A47922E1EB632000F6FDD /* FirebaseAI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +150,13 @@
 			);
 			name = Tarot2;
 			packageProductDependencies = (
+				1E2A47912E1EB632000F6FDD /* FirebaseAI */,
+				1E2A47932E1EB632000F6FDD /* FirebaseAppCheck */,
+				1E2A47952E1EB632000F6FDD /* FirebaseAuth */,
+				1E2A47972E1EB632000F6FDD /* FirebaseFirestore */,
+				1E2A47992E1EB632000F6FDD /* FirebaseMLModelDownloader */,
+				1E2A479B2E1EB632000F6FDD /* FirebaseMessaging */,
+				1E2A479D2E1EB632000F6FDD /* FirebaseVertexAI */,
 			);
 			productName = Tarot2;
 			productReference = 1E0754032D73C62C001DB97F /* Tarot2.app */;
@@ -195,6 +240,9 @@
 			);
 			mainGroup = 1E0753FA2D73C62C001DB97F;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				1E2A47902E1EB632000F6FDD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 1E0754042D73C62C001DB97F /* Products */;
 			projectDirPath = "";
@@ -558,6 +606,55 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1E2A47902E1EB632000F6FDD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.15.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1E2A47912E1EB632000F6FDD /* FirebaseAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1E2A47902E1EB632000F6FDD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAI;
+		};
+		1E2A47932E1EB632000F6FDD /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1E2A47902E1EB632000F6FDD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
+		1E2A47952E1EB632000F6FDD /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1E2A47902E1EB632000F6FDD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		1E2A47972E1EB632000F6FDD /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1E2A47902E1EB632000F6FDD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		1E2A47992E1EB632000F6FDD /* FirebaseMLModelDownloader */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1E2A47902E1EB632000F6FDD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMLModelDownloader;
+		};
+		1E2A479B2E1EB632000F6FDD /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1E2A47902E1EB632000F6FDD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		1E2A479D2E1EB632000F6FDD /* FirebaseVertexAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1E2A47902E1EB632000F6FDD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseVertexAI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1E0753FB2D73C62C001DB97F /* Project object */;
 }

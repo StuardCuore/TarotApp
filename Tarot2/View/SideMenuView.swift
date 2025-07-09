@@ -37,7 +37,7 @@ struct SideMenuView: View {
                 
                 List {
                     
-                    Section(header: Text("Setttings")) {
+                    Section(header: Text("Setttings").foregroundColor(Color.black).font(.system(size: 20, weight: .bold))) {
                         DisclosureGroup("Card Design", isExpanded: $isCardMenuExpanded) {
                             //disclsureGround is what takes the buttons inside the expansive group.
                             ForEach(CardProfile.data, id:\.self) {profile in
@@ -90,7 +90,9 @@ struct SideMenuView: View {
                             }//.background(sideMenuData.showPointSet3 ? Color.purple : Color.white)
                             //
                         }
-                    }
+                    }.listRowBackground(Color.clear) // Remove default background from the Section
+                        //.background(Color.gray.opacity(0.2))
+                        
                     //}
                     
                     
@@ -156,7 +158,9 @@ struct SideMenuView: View {
                      //.edgesIgnoringSafeArea(.all)
                      
                      */
-                }.frame(width: 300)
+                }.frame(width: 250)
+                    .scrollContentBackground(.hidden) // Removes default List background and changes the background color.
+                    .background(Color.gray.opacity(0.8))//.opacity(0.6))
                     .transition(.move(edge: .leading))
                     
                 Spacer()  // Pushes menu to the left

@@ -141,6 +141,22 @@ struct ContentView: View {
                                     .padding(30)
                                     Spacer()
                                     
+                                    //Test
+                                    Button {
+                                        Task {
+                                            do {
+                                                let response = try await model.generateContent("Write a short story about a futuristic city within one parragraph.")
+                                                if let text = response.text {
+                                                    print(text)
+                                                }
+                                            } catch {
+                                                print("Error generating content: \(error.localizedDescription)")
+                                            }
+                                        }
+                                    } label: {
+                                        Image("Card")
+                                    }
+                                    //test
                                     
                                     Button {
                                         showSpreadedCards.toggle()
