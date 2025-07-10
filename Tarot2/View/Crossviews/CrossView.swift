@@ -19,6 +19,10 @@ struct CrossView: View {
     @State var xoffset1 : CGFloat = 130
     @State var yoffset1 : CGFloat = 0
     
+    @State var cardInDot1 : Int?
+    @State var cardInDot2 : Int?
+    @State var cardInDot3 : Int?
+    
     var body: some View {
         ZStack{
             //1st magnetic point
