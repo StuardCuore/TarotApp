@@ -32,13 +32,13 @@ struct CardView: View {
     var yoffset3 = CrossView3().y2offset3 //x offset for points 6,7,8,9
     var dotPlacementOnX = CrossView().xPlacement1
     var dotPlacementOnY = CrossView().yPlacement1
+    
+    
     /*@State var showPointSet2: Bool = false
     @State var showPointSet3: Bool = false    //change to observedObject
      */
     
-    
-    
-    
+
     @State private var imageSize: CGSize = .zero //Use for getting the card size.
     
     
@@ -86,7 +86,7 @@ struct CardView: View {
                 //}
             } //end of toogle for front and back of the card
         }
-        .frame(width:200, height: 190) //.frame(width:200, height: 320)
+        .frame(width:200, height: 190) //.frame(width:200, height: 320) //REVIEW FIXED VALUES
         .zIndex(Double(zIndVal))
         .position(x: self.xdragAmount, y: self.ydragAmount)
         .gesture(
@@ -133,11 +133,13 @@ struct CardView: View {
                             //dotPlacementOnY is the value of the magnetic point placement on the Y axe
                         }
                         //Getting the cardname /number of point 1
-                        if self.xdragAmount == dotPlacementOnX - offset1 - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY {
+                        if self.xdragAmount == dotPlacementOnX - offset1 - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY && isShowingCard {
                         
                             print(self.card.front)
                             cardOnDots.cardOnDot1 = self.card.front //gets me the card number to be changed to the card name.
                             print("test1 \(cardOnDots.cardOnDot1)") //prints: test Optional(13)
+                            
+                            cardOnDots.dot1Bool = true
                         }
                         //Getting the cardname /number of point 1 end
                         // magnet gesture to the 2nd point.
@@ -148,11 +150,12 @@ struct CardView: View {
                         }
                         
                         //Getting the cardname /number of point 2
-                        if self.xdragAmount == dotPlacementOnX - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY
+                        if self.xdragAmount == dotPlacementOnX - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY && isShowingCard
                         {
                         
                             cardOnDots.cardOnDot2 = self.card.front //gets me the card number to be changed to the card name.
                             print("test2 \(cardOnDots.cardOnDot2)") //prints: test Optional(13)
+                            cardOnDots.dot2Bool = true
                         }
                         //Getting the cardname /number of point 2 end
                         // magnet magnet gesture to the 3rd point.
@@ -163,16 +166,17 @@ struct CardView: View {
                         }
                         
                         //Getting the cardname /number of point 3
-                        if self.xdragAmount == dotPlacementOnX + offset1 /*xOffset*/- (28 * offsetBack) && self.ydragAmount == dotPlacementOnY
+                        if self.xdragAmount == dotPlacementOnX + offset1 /*xOffset*/- (28 * offsetBack) && self.ydragAmount == dotPlacementOnY && isShowingCard
                         {
                         
                             cardOnDots.cardOnDot3 = self.card.front //gets me the card number to be changed to the card name.
                             print("test3 \(cardOnDots.cardOnDot3)") //prints: test Optional(13)
+                            cardOnDots.dot3Bool = true
                         }
                         //Getting the cardname /number of point 3 end
                         
                         // magnetic set crossview2
-                        if sideMenuData.showPointSet2 == true{ //change value through sideMenuView
+                        if sideMenuData.showPointSet2 == true { //change value through sideMenuView
                             //point 4:
                             if abs((UIScreen.main.bounds.width/2) - (self.xdragAmount + (28 * offsetBack))) < imageSize.width/2  && abs((UIScreen.main.bounds.height/1.45) - self.ydragAmount + yoffset2) < imageSize.height/2  {
                                 self.xdragAmount = dotPlacementOnX /*add xOffset*/ - (28 * offsetBack) //dotPlacementOnX is the value of the magnetic point placement on the X axe
@@ -180,11 +184,12 @@ struct CardView: View {
                                 self.ydragAmount = dotPlacementOnY + yoffset2/*add yOffset*/
                             }
                             //Getting the cardname /number of point 4
-                            if self.xdragAmount == dotPlacementOnX /*add xOffset*/ - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY + yoffset2
+                            if self.xdragAmount == dotPlacementOnX /*add xOffset*/ - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY + yoffset2 && isShowingCard
                             {
                             
                                 cardOnDots.cardOnDot4 = self.card.front //gets me the card number to be changed to the card name.
                                 print("test4 \(cardOnDots.cardOnDot4)") //prints: test Optional(13)
+                                cardOnDots.dot4Bool = true
                             }
                             //Getting the cardname /number of point 4 end
                             
@@ -195,11 +200,12 @@ struct CardView: View {
                                 self.ydragAmount = dotPlacementOnY - yoffset2/*add yOffset*/
                             }
                             //Getting the cardname /number of point 5
-                            if self.xdragAmount == dotPlacementOnX /*add xOffset*/ - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY - yoffset2
+                            if self.xdragAmount == dotPlacementOnX /*add xOffset*/ - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY - yoffset2 && isShowingCard
                             {
                             
                                 cardOnDots.cardOnDot5 = self.card.front //gets me the card number to be changed to the card name.
                                 print("test5 \(cardOnDots.cardOnDot5)") //prints: test Optional(13)
+                                cardOnDots.dot5Bool = true
                             }
                             //Getting the cardname /number of point 5 end
                         }
@@ -214,11 +220,12 @@ struct CardView: View {
                                 self.ydragAmount = dotPlacementOnY + yoffset3/*add yOffset*/
                             }
                             //Getting the cardname /number of point 6
-                            if self.xdragAmount == dotPlacementOnX + xoffset3/*add xOffset*/ - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY + yoffset3
+                            if self.xdragAmount == dotPlacementOnX + xoffset3/*add xOffset*/ - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY + yoffset3 && isShowingCard
                             {
                             
                                 cardOnDots.cardOnDot6 = self.card.front //gets me the card number to be changed to the card name.
                                 print("test6 \(cardOnDots.cardOnDot6)") //prints: test Optional(13)
+                                cardOnDots.dot6Bool = true
                             }
                             //Getting the cardname /number of point 6 end
                             //point 7:
@@ -229,11 +236,12 @@ struct CardView: View {
                             }
                             
                             //Getting the cardname /number of point 7
-                            if self.xdragAmount == dotPlacementOnX + xoffset3/*add xOffset*/ - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY
+                            if self.xdragAmount == dotPlacementOnX + xoffset3/*add xOffset*/ - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY && isShowingCard
                             {
                             
                                 cardOnDots.cardOnDot7 = self.card.front //gets me the card number to be changed to the card name.
                                 print("test7 \(cardOnDots.cardOnDot7)") //prints: test Optional(13)
+                                cardOnDots.dot7Bool = true
                             }
                             //Getting the cardname /number of point 7 end
                             
@@ -245,11 +253,13 @@ struct CardView: View {
                             }
                             
                             //Getting the cardname /number of point 8
-                            if self.xdragAmount == dotPlacementOnX + xoffset3/*add xOffset*/ - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY - yoffset3
+                            if self.xdragAmount == dotPlacementOnX + xoffset3/*add xOffset*/ - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY - yoffset3 && isShowingCard
                             {
                             
                                 cardOnDots.cardOnDot8 = self.card.front //gets me the card number to be changed to the card name.
                                 print("test8 \(cardOnDots.cardOnDot8)") //prints: test Optional(13)
+                                cardOnDots.dot8Bool = true
+                                
                             }
                             //Getting the cardname /number of point 8 end
                             
@@ -260,11 +270,12 @@ struct CardView: View {
                                 self.ydragAmount = dotPlacementOnY - (yoffset3*2)/*add yOffset*/
                             }
                             //Getting the cardname /number of point 9
-                            if self.xdragAmount == dotPlacementOnX + xoffset3/*add xOffset*/ - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY - (yoffset3*2)
+                            if self.xdragAmount == dotPlacementOnX + xoffset3/*add xOffset*/ - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY - (yoffset3*2) && isShowingCard
                             {
                             
                                 cardOnDots.cardOnDot9 = self.card.front //gets me the card number to be changed to the card name.
                                 print("test9 \(cardOnDots.cardOnDot9)") //prints: test Optional(13)
+                                cardOnDots.dot9Bool = true
                             }
                             //Getting the cardname /number of point 9 end
                             
@@ -289,6 +300,101 @@ struct CardView: View {
                 cardIndex.zInd += 1 // sets the zInd of the touched card
             }
             cardIndex.zVar += 2 // Brings the touched card to the front.*/
+            
+            //getting cardname on tap start
+            //Getting the cardname /number of point 1
+            if self.xdragAmount == dotPlacementOnX - offset1 - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY && isShowingCard {
+            
+                print(self.card.front)
+                cardOnDots.cardOnDot1 = self.card.front //gets me the card number to be changed later to the card name.
+                print("test1 \(cardOnDots.cardOnDot1)") //REMOVE LATER
+                cardOnDots.dot1Bool = true
+            }
+            //Getting the cardname /number of point 1 end
+            
+            //Getting the cardname /number of point 2
+            if self.xdragAmount == dotPlacementOnX - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY && isShowingCard
+            {
+            
+                cardOnDots.cardOnDot2 = self.card.front //gets me the card number to be changed to the card name.
+                print("test2 \(cardOnDots.cardOnDot2)") //REMOVE LATER
+                cardOnDots.dot2Bool = true
+            }
+            //Getting the cardname /number of point 2 end
+            
+            //Getting the cardname /number of point 3
+            if self.xdragAmount == dotPlacementOnX + offset1 /*xOffset*/- (28 * offsetBack) && self.ydragAmount == dotPlacementOnY && isShowingCard
+            {
+            
+                cardOnDots.cardOnDot3 = self.card.front //gets me the card number to be changed to the card name.
+                print("test3 \(cardOnDots.cardOnDot3)") //REMOVE LATER
+                cardOnDots.dot3Bool = true
+            }
+            //Getting the cardname /number of point 3 end
+            if sideMenuData.showPointSet2 == true {
+                //Getting the cardname /number of point 4
+                if self.xdragAmount == dotPlacementOnX /*add xOffset*/ - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY + yoffset2 && isShowingCard
+                {
+                    
+                    cardOnDots.cardOnDot4 = self.card.front //gets me the card number to be changed to the card name.
+                    print("test4 \(cardOnDots.cardOnDot4)") //REMOVE LATER
+                    cardOnDots.dot4Bool = true
+                }
+                //Getting the cardname /number of point 4 end
+                //Getting the cardname /number of point 5
+                if self.xdragAmount == dotPlacementOnX /*add xOffset*/ - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY - yoffset2 && isShowingCard
+                {
+                    
+                    cardOnDots.cardOnDot5 = self.card.front //gets me the card number to be changed to the card name.
+                    print("test5 \(cardOnDots.cardOnDot5)") //REMOVE LATER
+                    cardOnDots.dot5Bool = true
+                }
+                //Getting the cardname /number of point 5 end
+            }
+            if sideMenuData.showPointSet3 == true {
+                //Getting the cardname /number of point 6
+                if self.xdragAmount == dotPlacementOnX + xoffset3/*add xOffset*/ - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY + yoffset3 && isShowingCard
+                {
+                    
+                    cardOnDots.cardOnDot6 = self.card.front //gets me the card number to be changed to the card name.
+                    print("test6 \(cardOnDots.cardOnDot6)") //REMOVE LATER
+                    cardOnDots.dot6Bool = true
+                }
+                //Getting the cardname /number of point 6 end
+                
+                //Getting the cardname /number of point 7
+                if self.xdragAmount == dotPlacementOnX + xoffset3/*add xOffset*/ - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY && isShowingCard
+                {
+                    
+                    cardOnDots.cardOnDot7 = self.card.front //gets me the card number to be changed to the card name.
+                    print("test7 \(cardOnDots.cardOnDot7)") //REMOVE LATER
+                    cardOnDots.dot7Bool = true
+                }
+                //Getting the cardname /number of point 7 end
+                
+                //Getting the cardname /number of point 8
+                if self.xdragAmount == dotPlacementOnX + xoffset3/*add xOffset*/ - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY - yoffset3 && isShowingCard
+                {
+                    
+                    cardOnDots.cardOnDot8 = self.card.front //gets me the card number to be changed to the card name.
+                    print("test8 \(cardOnDots.cardOnDot8)") //REMOVE LATER
+                    cardOnDots.dot8Bool = true
+                }
+                //Getting the cardname /number of point 8 end
+                
+                //Getting the cardname /number of point 9
+                if self.xdragAmount == dotPlacementOnX + xoffset3/*add xOffset*/ - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY - (yoffset3*2) && isShowingCard
+                {
+                    
+                    cardOnDots.cardOnDot9 = self.card.front //gets me the card number to be changed to the card name.
+                    print("test9 \(cardOnDots.cardOnDot9)") //prints: test Optional(13)
+                    cardOnDots.dot9Bool = true
+                }
+                //Getting the cardname /number of point 9 end
+            }
+            
+            //getting cardname on tap ends
+            
         }
         
         .onLongPressGesture(minimumDuration: 0.8, pressing: { pressing in
@@ -356,7 +462,9 @@ struct CardView: View {
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
         CardView(card: Card.example)
-            .environmentObject(ArrayData()) //This allows the preview to load by been able to read the environmentObject
+            .environmentObject(ArrayData())
+                .environmentObject(SideMenuData())
+                .environmentObject(CardOnDots())//This allows the preview to load by been able to read the environmentObject
     }
 }
 

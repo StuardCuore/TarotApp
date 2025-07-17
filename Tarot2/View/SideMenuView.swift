@@ -140,7 +140,7 @@ struct SideMenuView: View {
                      .padding(10)
                      }
                      Button {} label: {
-                     Image(systemName: "squareshape.split.2x2.dotted") //arreglar que se pongan donde yo quiero!!!!!!!!!!!!!!!!!!!
+                     Image(systemName: "squareshape.split.2x2.dotted") //arreglar que se pongan donde yo quiero!
                      .resizable()
                      .aspectRatio(contentMode: .fill).frame(width: 60, height:60).cornerRadius(30)
                      .padding(10)
@@ -158,7 +158,7 @@ struct SideMenuView: View {
                      //.edgesIgnoringSafeArea(.all)
                      
                      */
-                }.frame(width: 250)
+                }.frame(width: 250).padding(20)
                     .scrollContentBackground(.hidden) // Removes default List background and changes the background color.
                     .background(Color.gray.opacity(0.8))//.opacity(0.6))
                     .transition(.move(edge: .leading))

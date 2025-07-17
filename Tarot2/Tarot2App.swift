@@ -28,11 +28,14 @@ struct Tarot2App: App {
     // register app delegate for Firebase setup
     
     //added from gemini
-    init() {
+    /*init() {
             FirebaseApp.configure()
-        }
+        }*/
     //aded from gemini
     
+    //comes from AppDelegate file
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    //comes from AppDelegate file
     var body: some Scene {
         WindowGroup {
             /* all this views aren't working anymore. They use to be tests
