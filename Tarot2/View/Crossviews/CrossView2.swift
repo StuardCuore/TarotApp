@@ -14,7 +14,7 @@ import SwiftUI
 struct CrossView2: View {
     
     @State private var xPlacement1: CGFloat = UIScreen.main.bounds.width/2
-    @State private var yPlacement1: CGFloat = UIScreen.main.bounds.height/1.45
+    @State private var yPlacement1: CGFloat = UIScreen.main.bounds.height/1.93
     
     @State var xoffset2 : CGFloat = 130
     @State var yoffset2 : CGFloat = 200

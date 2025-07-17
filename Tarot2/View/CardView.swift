@@ -126,7 +126,7 @@ struct CardView: View {
                         cardIndex.zVar += 2 // Brings the touched card to the front.
                         
                         // magnet gesture to the 1st point.
-                        if abs((UIScreen.main.bounds.width/2) - (self.xdragAmount + offset1 + (28 * offsetBack))) < imageSize.width/2  && abs((UIScreen.main.bounds.height/1.45) - self.ydragAmount) < imageSize.height/2  {
+                        if abs((UIScreen.main.bounds.width/2) - (self.xdragAmount + offset1 + (28 * offsetBack))) < imageSize.width/2  && abs((UIScreen.main.bounds.height/1.93) - self.ydragAmount) < imageSize.height/2  {
                             self.xdragAmount = dotPlacementOnX - offset1 - (28 * offsetBack) //dotPlacementOnX is the value of the magnetic point placement on the X axe
                             // var offsetback is what takes the card to the magnetic place, taking out the offset/displacement created in the extension for the card view in the ContentView.swift file.
                             self.ydragAmount = dotPlacementOnY
@@ -143,7 +143,7 @@ struct CardView: View {
                         }
                         //Getting the cardname /number of point 1 end
                         // magnet gesture to the 2nd point.
-                        if abs((UIScreen.main.bounds.width/2) - (self.xdragAmount + (28 * offsetBack))) < imageSize.width/2  && abs((UIScreen.main.bounds.height/1.45) - self.ydragAmount) < imageSize.height/2  {
+                        if abs((UIScreen.main.bounds.width/2) - (self.xdragAmount + (28 * offsetBack))) < imageSize.width/2  && abs((UIScreen.main.bounds.height/1.93) - self.ydragAmount) < imageSize.height/2  {
                             self.xdragAmount = dotPlacementOnX - (28 * offsetBack) //dotPlacementOnX is the value of the magnetic point placement on the X axe
                             // var offsetback is what takes the card to the magnetic place, taking out the offset/displacement created in the extension for the card view in the ContentView.swift file.
                             self.ydragAmount = dotPlacementOnY //dotPlacementOnY is the value of the magnetic point placement on the Y axe
@@ -159,7 +159,7 @@ struct CardView: View {
                         }
                         //Getting the cardname /number of point 2 end
                         // magnet magnet gesture to the 3rd point.
-                        if abs((UIScreen.main.bounds.width/2) - (self.xdragAmount - offset1 + (28 * offsetBack))) < imageSize.width/2 && abs((UIScreen.main.bounds.height/1.45) - self.ydragAmount) < imageSize.height/2  {
+                        if abs((UIScreen.main.bounds.width/2) - (self.xdragAmount - offset1 + (28 * offsetBack))) < imageSize.width/2 && abs((UIScreen.main.bounds.height/1.93) - self.ydragAmount) < imageSize.height/2  {
                             self.xdragAmount = dotPlacementOnX + offset1 /*xOffset*/- (28 * offsetBack) //dotPlacementOnX is the value of the magnetic point placement on the X axe
                             // var offsetback is what takes the card to the magnetic place, taking out the offset/displacement created in the extension for the card view in the ContentView.swift file.
                             self.ydragAmount = dotPlacementOnY //dotPlacementOnY is the value of the magnetic point placement on the Y axe
@@ -178,7 +178,7 @@ struct CardView: View {
                         // magnetic set crossview2
                         if sideMenuData.showPointSet2 == true { //change value through sideMenuView
                             //point 4:
-                            if abs((UIScreen.main.bounds.width/2) - (self.xdragAmount + (28 * offsetBack))) < imageSize.width/2  && abs((UIScreen.main.bounds.height/1.45) - self.ydragAmount + yoffset2) < imageSize.height/2  {
+                            if abs((UIScreen.main.bounds.width/2) - (self.xdragAmount + (28 * offsetBack))) < imageSize.width/2  && abs((UIScreen.main.bounds.height/1.93) - self.ydragAmount + yoffset2) < imageSize.height/2  {
                                 self.xdragAmount = dotPlacementOnX /*add xOffset*/ - (28 * offsetBack) //dotPlacementOnX is the value of the magnetic point placement on the X axe
                                 // var offsetback is what takes the card to the magnetic place, taking out the offset/displacement created in the extension for the card view in the ContentView.swift file.
                                 self.ydragAmount = dotPlacementOnY + yoffset2/*add yOffset*/
@@ -194,7 +194,7 @@ struct CardView: View {
                             //Getting the cardname /number of point 4 end
                             
                             //point 5:
-                            if abs((UIScreen.main.bounds.width/2) - (self.xdragAmount + (28 * offsetBack))) < imageSize.width/2  && abs((UIScreen.main.bounds.height/1.45) - self.ydragAmount - yoffset2) < imageSize.height/2  {
+                            if abs((UIScreen.main.bounds.width/2) - (self.xdragAmount + (28 * offsetBack))) < imageSize.width/2  && abs((UIScreen.main.bounds.height/1.93) - self.ydragAmount - yoffset2) < imageSize.height/2  {
                                 self.xdragAmount = dotPlacementOnX /*add xOffset*/ - (28 * offsetBack) //dotPlacementOnX is the value of the magnetic point placement on the X axe
                                 // var offsetback is what takes the card to the magnetic place, taking out the offset/displacement created in the extension for the card view in the ContentView.swift file.
                                 self.ydragAmount = dotPlacementOnY - yoffset2/*add yOffset*/
@@ -214,7 +214,7 @@ struct CardView: View {
                         // magnetic points 3
                         if sideMenuData.showPointSet3 == true { //change back to true
                             //point 6
-                            if abs((UIScreen.main.bounds.width/2) - (self.xdragAmount - xoffset3/*xOffset*/ + (28 * offsetBack))) < imageSize.width/2  && abs((UIScreen.main.bounds.height/1.45) - self.ydragAmount + yoffset3) < imageSize.height/2  {
+                            if abs((UIScreen.main.bounds.width/2) - (self.xdragAmount - xoffset3/*xOffset*/ + (28 * offsetBack))) < imageSize.width/2  && abs((UIScreen.main.bounds.height/1.93) - self.ydragAmount + yoffset3) < imageSize.height/2  {
                                 self.xdragAmount = dotPlacementOnX + xoffset3/*add xOffset*/ - (28 * offsetBack) //dotPlacementOnX is the value of the magnetic point placement on the X axe
                                 // var offsetback is what takes the card to the magnetic place, taking out the offset/displacement created in the extension for the card view in the ContentView.swift file.
                                 self.ydragAmount = dotPlacementOnY + yoffset3/*add yOffset*/
@@ -229,7 +229,7 @@ struct CardView: View {
                             }
                             //Getting the cardname /number of point 6 end
                             //point 7:
-                            if abs((UIScreen.main.bounds.width/2) - (self.xdragAmount - xoffset3/*xOffset*/ + (28 * offsetBack))) < imageSize.width/2  && abs((UIScreen.main.bounds.height/1.45) - self.ydragAmount /*yOffset*/) < imageSize.height/2  {
+                            if abs((UIScreen.main.bounds.width/2) - (self.xdragAmount - xoffset3/*xOffset*/ + (28 * offsetBack))) < imageSize.width/2  && abs((UIScreen.main.bounds.height/1.93) - self.ydragAmount /*yOffset*/) < imageSize.height/2  {
                                 self.xdragAmount = dotPlacementOnX + xoffset3/*add xOffset*/ - (28 * offsetBack) //dotPlacementOnX is the value of the magnetic point placement on the X axe
                                 // var offsetback is what takes the card to the magnetic place, taking out the offset/displacement created in the extension for the card view in the ContentView.swift file.
                                 self.ydragAmount = dotPlacementOnY /*add yOffset*/
@@ -246,7 +246,7 @@ struct CardView: View {
                             //Getting the cardname /number of point 7 end
                             
                             //point 8
-                            if abs((UIScreen.main.bounds.width/2) - (self.xdragAmount - xoffset3/*xOffset*/ + (28 * offsetBack))) < imageSize.width/2  && abs((UIScreen.main.bounds.height/1.45) - self.ydragAmount - yoffset3) < imageSize.height/2  {
+                            if abs((UIScreen.main.bounds.width/2) - (self.xdragAmount - xoffset3/*xOffset*/ + (28 * offsetBack))) < imageSize.width/2  && abs((UIScreen.main.bounds.height/1.93) - self.ydragAmount - yoffset3) < imageSize.height/2  {
                                 self.xdragAmount = dotPlacementOnX + xoffset3/*add xOffset*/ - (28 * offsetBack) //dotPlacementOnX is the value of the magnetic point placement on the X axe
                                 // var offsetback is what takes the card to the magnetic place, taking out the offset/displacement created in the extension for the card view in the ContentView.swift file.
                                 self.ydragAmount = dotPlacementOnY - yoffset3/*add yOffset*/
@@ -264,13 +264,13 @@ struct CardView: View {
                             //Getting the cardname /number of point 8 end
                             
                             //point 9
-                            if abs((UIScreen.main.bounds.width/2) - (self.xdragAmount - xoffset3/*xOffset*/ + (28 * offsetBack))) < imageSize.width/2  && abs((UIScreen.main.bounds.height/1.45) - self.ydragAmount - (yoffset3*2)) < imageSize.height/2  {
+                            if abs((UIScreen.main.bounds.width/2) - (self.xdragAmount - xoffset3/*xOffset*/ + (28 * offsetBack))) < imageSize.width/2  && abs((UIScreen.main.bounds.height/1.93) - self.ydragAmount + (yoffset3*2)) < imageSize.height/2  { //self.ydragAmount - (yoffset3*2)) < imageSize.height/2
                                 self.xdragAmount = dotPlacementOnX + xoffset3/*add xOffset*/ - (28 * offsetBack) //dotPlacementOnX is the value of the magnetic point placement on the X axe
                                 // var offsetback is what takes the card to the magnetic place, taking out the offset/displacement created in the extension for the card view in the ContentView.swift file.
-                                self.ydragAmount = dotPlacementOnY - (yoffset3*2)/*add yOffset*/
+                                self.ydragAmount = dotPlacementOnY + (yoffset3*2)/*add yOffset*/
                             }
                             //Getting the cardname /number of point 9
-                            if self.xdragAmount == dotPlacementOnX + xoffset3/*add xOffset*/ - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY - (yoffset3*2) && isShowingCard
+                            if self.xdragAmount == dotPlacementOnX + xoffset3/*add xOffset*/ - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY + (yoffset3*2) && isShowingCard //self.ydragAmount - (yoffset3*2)) < imageSize.height/2
                             {
                             
                                 cardOnDots.cardOnDot9 = self.card.front //gets me the card number to be changed to the card name.
@@ -383,7 +383,7 @@ struct CardView: View {
                 //Getting the cardname /number of point 8 end
                 
                 //Getting the cardname /number of point 9
-                if self.xdragAmount == dotPlacementOnX + xoffset3/*add xOffset*/ - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY - (yoffset3*2) && isShowingCard
+                if self.xdragAmount == dotPlacementOnX + xoffset3/*add xOffset*/ - (28 * offsetBack) && self.ydragAmount == dotPlacementOnY + (yoffset3*2) && isShowingCard
                 {
                     
                     cardOnDots.cardOnDot9 = self.card.front //gets me the card number to be changed to the card name.

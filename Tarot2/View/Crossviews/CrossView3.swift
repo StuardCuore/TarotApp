@@ -15,14 +15,14 @@ import SwiftUI
 struct CrossView3: View {
     
     @State private var xPlacement1: CGFloat = UIScreen.main.bounds.width/2
-    @State private var yPlacement1: CGFloat = UIScreen.main.bounds.height/1.45
+    @State private var yPlacement1: CGFloat = UIScreen.main.bounds.height/1.93
     
     
     @State var xoffset3 : CGFloat = 130
-    @State var yoffset3 : CGFloat = 200
+    @State var yoffset3 : CGFloat = 200     // 1
     @State var x2offset3 : CGFloat = 260
-    @State var y2offset3 : CGFloat = 195
-    @State var y3offset3 : CGFloat = 0
+    @State var y2offset3 : CGFloat = 195    // 2 solo se esta usando este
+    @State var y3offset3 : CGFloat = 0      // 3
     
     var body: some View {
         ZStack{
@@ -50,7 +50,7 @@ struct CrossView3: View {
             //6rd magnetic point bottom
             Image(systemName: "circle.dotted")
                 .position(x: self.xPlacement1, y: self.yPlacement1)
-                .offset(x: x2offset3, y: y2offset3)
+                .offset(x: x2offset3, y: y2offset3) //195
             //7rd magnetic point bottom
             Image(systemName: "circle.dotted")
                 .position(x: self.xPlacement1, y: self.yPlacement1)
@@ -58,11 +58,11 @@ struct CrossView3: View {
             //8rd magnetic point bottom
             Image(systemName: "circle.dotted")
                 .position(x: self.xPlacement1, y: self.yPlacement1)
-                .offset(x: x2offset3, y: -(y2offset3))
+                .offset(x: x2offset3, y: -(y2offset3)) // -195
             //9rd magnetic point bottom
             Image(systemName: "circle.dotted")
                 .position(x: self.xPlacement1, y: self.yPlacement1)
-                .offset(x: x2offset3, y: -(y2offset3 * 2))
+                .offset(x: x2offset3, y: (y2offset3 * 2)) // -(195*2) //-(y2offset3 * 2))
             
             //
             
